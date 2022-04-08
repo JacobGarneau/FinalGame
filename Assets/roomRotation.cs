@@ -8,7 +8,7 @@ public class roomRotation : MonoBehaviour
     public GameObject axisX;
     public GameObject axisY;
     public GameObject axisZ;
-    public float rotationSpeed = 0.05f;
+    public float rotationSpeed = 0.2f;
     public float pullSpeed = 0.2f;
     private GameObject pullTarget;
     private GameObject pushTarget;
@@ -37,51 +37,6 @@ public class roomRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // BLOCK PUSHING / PULLING
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray theRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit rayHitInfo;
-            if (Physics.Raycast(theRay, out rayHitInfo))
-            {
-                if (rayHitInfo.collider.gameObject.tag == pullableTag)
-                {
-                    pullTarget = rayHitInfo.collider.gameObject;
-                }
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray theRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit rayHitInfo;
-            if (Physics.Raycast(theRay, out rayHitInfo))
-            {
-                if (rayHitInfo.collider.gameObject.tag == pullableTag)
-                {
-                    pushTarget = rayHitInfo.collider.gameObject;
-                }
-            }
-        }
-        else if (pushTarget)
-        {
-            pullTarget = null;
-        }
-
-        if (pullTarget && pullTarget.transform.localScale.y < pullSize)
-        {
-            pullTarget.transform.localScale += new Vector3(0, pullSpeed, 0);
-        }
-
-        if (pushTarget && pushTarget.transform.localScale.y > pushSize)
-        {
-            pushTarget.transform.localScale -= new Vector3(0, pullSpeed, 0);
-        } else if (pushTarget)
-        {
-            pushTarget = null;
-        }
-
         // ROTATION AXIS CHANGE
 
         if (Input.GetKeyDown(KeyCode.X) && axisChangeable)

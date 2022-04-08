@@ -37111,7 +37111,7 @@ MonoBehaviour:
   axisX: {fileID: 1967116228}
   axisY: {fileID: 1705549702}
   axisZ: {fileID: 1545980603}
-  rotationSpeed: 0.05
+  rotationSpeed: 0.2
   pullSpeed: 0.2
   pullableTag: Pullable
   axisChangeable: 0
